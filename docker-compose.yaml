@@ -1,0 +1,10 @@
+app:
+  build: .
+  command: python3 app.py
+  ports:
+    - "5555:5555"
+  environment:
+    - foo="bar"
+    # - GITHUB_TOKEN='<ENTER TOKEN>'
+    # - GITHUB_USER='<ENTER USER>'
+    ## works without creds for limited requests

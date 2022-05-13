@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: flask-app
+  name: flask-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: flask-app
+    spec:
+      containers:
+      - image: flask-app:latest
+        name: flask-app
+        imagePullPolicy: Never #Since we want to get image from local registry as its not saved in public registry
+        ports:
+        - containerPort: 5555
+        resources: {}
+status: {}
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: flask-app
+  name: flask-app
+spec:
+  ports:
+  - port: 5555
+    protocol: TCP
+    targetPort: 5555
+  selector:
+    app: flask-app
+  type: LoadBalancer
+status:
+  loadBalancer: {}
