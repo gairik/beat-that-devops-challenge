@@ -14,10 +14,10 @@ from os import environ
 import os
 import requests
 from http.client import HTTPConnection
+import datetime, time
 
 app = Flask("myapp") 
-#get log messges
-HTTPConnection.debuglevel = 1
+#HTTPConnection.debuglevel = 1
 
 
 if os.getenv('GITHUB_USER') is None:
@@ -82,25 +82,25 @@ def makePrDetails(response_data):
 
     return (pr_details)   
 
-# def myKickAssTask():
-#     kickascodetosendrockettospaceorresolveworldhunger
-#     create_some_json_as_result ={} 
-#     return (create_some_json_as_result)
-
 # @app.route("/config" , methods=['GET'])
 # def config():
 #     return ('user is {0}, github_token {1}, owner {2}, project {3}'.format(user, github_token, owner, project))
 
 
-@app.route("/" , methods=['GET'])
+# @app.route("/" , methods=['GET'])
+# def main():
+#     response_data = getReq('{0}/repos/{1}/{2}/pulls'.format(github_api,owner,project))
+#     if response_data is not None:   
+#             final_data = threeDaysOld(response_data)
+#     return (json.dumps(final_data, default = str, indent=4, sort_keys=True))
+
+
+# app.run(host="0.0.0.0", port=5555 , debug=True)
+
 def main():
     response_data = getReq('{0}/repos/{1}/{2}/pulls'.format(github_api,owner,project))
     pr_details = makePrDetails(response_data)
     print (pr_details)
-    return (json.dumps(pr_details, default = str, indent=4, sort_keys=True))
+    #return (json.dumps(final_data, default = str, indent=4, sort_keys=True))
 
-    # return_data = myKickAssTask()
-    # return (json.dumps(return_data, default = str, indent=4, sort_keys=True))
-
-
-app.run(host="0.0.0.0", port=5555 , debug=True)
+main()
