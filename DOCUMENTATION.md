@@ -1,5 +1,3 @@
-## MEDIUM article coming soon 
-
 # Goal
 
 Buid an application that that does
